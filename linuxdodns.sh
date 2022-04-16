@@ -10,25 +10,24 @@ echoFinish() {
 
 echoPrefix "linuxdodns version 0.1.20220416"
 
-DOTOKEN="$(cat ~/.linuxdodns.pwd)"
+DOTOKEN="$(cat /etc/linuxdodns.pwd)"
 if [ -z "${DOTOKEN}" ]; then
-  echoPrefix "Missing Digital Ocean API token file ~/.linuxdodns.pwd"
+  echoPrefix "Missing Digital Ocean API token file /etc/linuxdodns.pwd"
   exit 1
 fi
 
 if [ -z "${1}" ]; then
-  echoPrefix "Missing first argument which is the domain"
+  echoPrefix "Missing domain argument"
   exit 1
 fi
 
-DOMAIN="${1}"
+DOMAIN="$(echo "${1}" | awk -F. '{ printf("%s.%s", $(NF-1), $NF); }')"
+SUBDOMAIN="$(echo "${1}" | awk -F. '{ printf("%s", $1); }')"
 
-if [ -z "${2}" ]; then
-  echoPrefix "Missing second argument which is the subdomain"
+if [ -z "${SUBDOMAIN}" ]; then
+  echoPrefix "Missing subdomain"
   exit 1
 fi
-
-SUBDOMAIN="${2}"
 
 echoPrefix "Processing ${SUBDOMAIN}.${DOMAIN}"
 
