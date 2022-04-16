@@ -82,7 +82,11 @@ if [ "${DODATA}" = "${PUBLICIP}" ]; then
 fi
 
 # https://docs.digitalocean.com/reference/api/api-reference/#operation/update_domain_record
-DOUPDATE="$(curl --silent -v -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer ${DOTOKEN}" -d "{\"data\":\"${PUBLICIP}\"}" --write-out "\n%{http_code}" "https://api.digitalocean.com/v2/domains/${DOMAIN}/records/${DORECORD}" 2>&1)"
+DOUPDATE="$(curl --silent -v -X PUT --header "Content-Type: application/json" \
+            --header "Authorization: Bearer ${DOTOKEN}" -d "{\"data\":\"${PUBLICIP}\"}" \
+            --write-out "\n%{http_code}" \
+            "https://api.digitalocean.com/v2/domains/${DOMAIN}/records/${DORECORD}" 2>&1)"
+
 if [ -z "${DOUPDATE}" ]; then
   echoPrefix "Failed to update the DNS record"
   exit 1
