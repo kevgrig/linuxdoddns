@@ -1,5 +1,5 @@
 [Unit]
-Description=linuxdodns for %I
+Description=linuxdoddns for %I
 Wants=network-online.target
 After=network-online.target
 
@@ -7,7 +7,7 @@ After=network-online.target
 Type=simple
 User=root
 Restart=always
-ExecStart=/opt/linuxdodns/linuxdodns.sh %i
+ExecStart=/opt/linuxdoddns/linuxdoddns.sh %i
 RemainAfterExit=true
 
 [Install]

@@ -5,14 +5,14 @@ echoPrefix() {
 }
 
 echoFinish() {
-  echoPrefix "linuxdodns Finished"
+  echoPrefix "linuxdoddns Finished"
 }
 
-echoPrefix "linuxdodns version 0.1.20220416"
+echoPrefix "linuxdoddns version 0.1.20220416"
 
-DOTOKEN="$(cat /etc/linuxdodns.pwd)"
+DOTOKEN="$(cat /etc/linuxdoddns.pwd)"
 if [ -z "${DOTOKEN}" ]; then
-  echoPrefix "Missing Digital Ocean API token file /etc/linuxdodns.pwd"
+  echoPrefix "Missing Digital Ocean API token file /etc/linuxdoddns.pwd"
   exit 1
 fi
 
