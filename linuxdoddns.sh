@@ -8,7 +8,7 @@ echoFinish() {
   echoPrefix "linuxdoddns Finished"
 }
 
-echoPrefix "linuxdoddns version 0.1.20220416"
+echoPrefix "linuxdoddns version 0.1.20220514"
 
 DOTOKEN="$(cat /etc/linuxdoddns.pwd)"
 if [ -z "${DOTOKEN}" ]; then
@@ -29,7 +29,7 @@ if [ -z "${SUBDOMAIN}" ]; then
   exit 1
 fi
 
-echoPrefix "Processing ${SUBDOMAIN}.${DOMAIN}"
+echoPrefix "Processing ${SUBDOMAIN}.${DOMAIN} from input ${1}"
 
 echoPrefix "Requesting current public IP"
 
